@@ -7,16 +7,16 @@ const app = express();
 
 const PORT = 3000;
 
-const friends = [
-  {
-    id:1,
-    name:'pandu'
-  },
-  {
-    id:2,
-    name:'madhu'
-  }
-];
+// const friends = [
+//   {
+//     id:1,
+//     name:'pandu'
+//   },
+//   {
+//     id:2,
+//     name:'madhu'
+//   }
+// ];
 
 app.use((req,res,next) => {
   const start = Date.now();
@@ -48,21 +48,24 @@ app.use(express.json());
 //   res.json(friends);
 // });
 
+// app.get('/friends/:friendId' , (req,res) => {
+//   const friendId = Number(req.params.friendId);
+//   const friend = friends[friendId];
+//   if(friend){
+//     res.json(friend)
+//   }else {
+//     res.status(404).json({
+//       error: "friend does not exist"
+//     })
+//   }
+// });
+
 app.post('/friends' , friendsController.postFriend);
 
 app.get('/friends' , friendsController.getFriends);
 
-app.get('/friends/:friendId' , (req,res) => {
-  const friendId = Number(req.params.friendId);
-  const friend = friends[friendId];
-  if(friend){
-    res.json(friend)
-  }else {
-    res.status(404).json({
-      error: "friend does not exist"
-    })
-  }
-});
+app.get('/friends/:friendId' , friendsController.getFriend);
+
 
 app.get('/', (req,res) => {
   // res.send('Hello ....');
