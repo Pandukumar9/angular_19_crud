@@ -1,0 +1,27 @@
+<p>mobiles works!</p>
+<h1>Mobile Inventory</h1>
+
+<form (ngSubmit)="addMobile()">
+  <input [(ngModel)]="newMobile.name" name="name" placeholder="Name" required />
+  <input [(ngModel)]="newMobile.brand" name="brand" placeholder="Brand" required />
+  <input [(ngModel)]="newMobile.price" name="price" placeholder="Price" type="number" required />
+  <button type="submit">Add Mobile</button>
+</form>
+
+<ul>
+  <li *ngFor="let mobile of mobiles">
+    {{ mobile.name }} - {{ mobile.brand }} - ${{ mobile.price }}
+    <button (click)="editMobile(mobile)">Edit</button>
+    <button (click)="deleteMobile(mobile._id)">Delete</button>
+  </li>
+</ul>
+
+<div *ngIf="selectedMobile">
+  <h2>Edit Mobile</h2>
+  <input [(ngModel)]="selectedMobile.name" placeholder="Name" />
+  <input [(ngModel)]="selectedMobile.brand" placeholder="Brand" />
+  <input [(ngModel)]="selectedMobile.price" placeholder="Price" type="number" />
+  <button (click)="updateMobile()">Update</button>
+</div>
+
+<button (click)="deleteAllMobiles()">Delete All Mobiles</button>

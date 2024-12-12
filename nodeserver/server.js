@@ -29,7 +29,8 @@ app.get('/' ,(req,res) => {
   })
 })
 
-app.use('/site' , express.static(path.json(__dirname, 'index')));
+
+app.use('/site' , express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
 // const friendsRouter = express.Router();
